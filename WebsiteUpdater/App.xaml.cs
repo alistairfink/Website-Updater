@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Collections.Specialized;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace WebsiteUpdater
 {
@@ -14,10 +16,11 @@ namespace WebsiteUpdater
     /// </summary>
     public partial class App : Application
     {
-        private readonly string _environment;
         public App()
         {
-            _environment = ConfigurationSettings.AppSettings["Environment"];
+            var jsonText = File.ReadAllText("./Settings.json");
+            var sponsors = JsonConvert.DeserializeObject<Settings>(jsonText);
+            string test = sponsors.Test;
         }
 
     }

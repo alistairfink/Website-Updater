@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="Website Backend Updater" Height="600" Width="800">
     <Grid>
-        <Button>Test</Button>
+        <Button Click="TestClick" Name="Test" Height="100" Width="100">Test</Button>
     </Grid>
 </Window>
-r

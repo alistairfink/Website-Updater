@@ -23,6 +23,14 @@ namespace WebsiteUpdater
         public MainWindow()
         {
             InitializeComponent();
+            Button Test = new Button();
+            Test.Name = "Test";
+            Test.Click += TestClick;
+        }
+
+        private void TestClick(object sender, RoutedEventArgs e)
+        {
+            Console.Write("test");
         }
     }
 }
