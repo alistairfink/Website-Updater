@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebsiteUpdater"
         mc:Ignorable="d"
-        Title="Website Backend Updater" Height="600" Width="800">
+        Title="Website Backend Updater" Height="720" Width="1280">
     <Grid>
-        <Button Click="TestClick" Name="Test" Height="100" Width="100">Test</Button>
+        <TabControl x:Name="tabs" SelectionChanged="TabsChanged">
+        </TabControl>
     </Grid>
 </Window>

@@ -18,9 +18,6 @@ namespace WebsiteUpdater
     {
         public App()
         {
-            var jsonText = File.ReadAllText("./Settings.json");
-            var sponsors = JsonConvert.DeserializeObject<Settings>(jsonText);
-            string test = sponsors.Test;
         }
 
     }

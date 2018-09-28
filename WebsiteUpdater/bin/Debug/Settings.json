@@ -1,3 +1,41 @@
 ﻿{
-  "Test" : "text"
+  "BaseUrl": "api.alistairfink.com",
+  "APIKey": "243d25d9-ab9e-47e9-91cc-0cc956df7320",
+  "Pages": [
+    {
+      "Type": "Normal",
+      "Name": "Test1",
+      "GetLink": "/yolo",
+      "EditLink": "/notYOlo",
+      "AddLink": "/yolo2"
+    },
+    {
+      "Type": "Normal",
+      "Name": "Test2",
+      "GetLink": "/yolo",
+      "EditLink": "/notYOlo",
+      "AddLink": "/yolo2"
+    },
+    {
+      "Type": "Normal",
+      "Name": "Test3",
+      "GetLink": "/yolo",
+      "EditLink": "/notYOlo",
+      "AddLink": "/yolo2"
+    },
+    {
+      "Type": "Normal",
+      "Name": "Test4",
+      "GetLink": "/yolo",
+      "EditLink": "/notYOlo",
+      "AddLink": "/yolo2"
+    },
+    {
+      "Type": "Normal",
+      "Name": "Test5",
+      "GetLink": "/yolo",
+      "EditLink": "/notYOlo",
+      "AddLink": "/yolo2"
+    }
+  ]
 }
