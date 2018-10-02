@@ -20,5 +20,6 @@ namespace WebsiteUpdater
         public string GetListLink { get; set; }
         public string EditLink { get; set; }
         public string AddLink { get; set; }
+        public List<List<KeyValuePair<string, dynamic>>> Fields { get; set; }
     }
 }

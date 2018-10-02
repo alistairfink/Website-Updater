@@ -1,23 +1,30 @@
 ﻿{
-  "BaseUrl": "api.alistairfink.com",
+  "BaseUrl": "http://memes.alistairfink.com/websiteTest",
   "APIKey": "243d25d9-ab9e-47e9-91cc-0cc956df7320",
   "Pages": [
     {
+      "Type": "Single",
+      "Name": "Test1",
+      "GetLink": "/GetAbout",
+      "EditLink": "/notYOlo",
+      "AddLink": "/yolo2"
+    },
+    {
+      "Type": "Single",
+      "Name": "Test1",
+      "GetLink": "/GetAbout",
+      "EditLink": "/notYOlo",
+      "AddLink": "/yolo2"
+    },
+    {
       "Type": "Normal",
       "Name": "Test1",
-      "GetLink": "/yolo",
+      "GetLink": "/GetEducation",
       "EditLink": "/notYOlo",
       "AddLink": "/yolo2"
     },
     {
-      "Type": "Normal",
-      "Name": "Test2",
-      "GetLink": "/yolo",
-      "EditLink": "/notYOlo",
-      "AddLink": "/yolo2"
-    },
-    {
-      "Type": "Normal",
+      "Type": "List",
       "Name": "Test3",
       "GetLink": "/yolo",
       "EditLink": "/notYOlo",
