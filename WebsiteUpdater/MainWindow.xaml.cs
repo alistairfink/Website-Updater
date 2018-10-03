@@ -53,33 +53,44 @@ namespace WebsiteUpdater
             Page currPage = _settings.Pages[tabs.SelectedIndex];
             if (currPage.Fields == null)
             {
-                currPage.Fields = new List<List<KeyValuePair<string, dynamic>>>();
+                currPage.Fields = new List<Dictionary<string, dynamic>>();
                 using (HttpClient client = new HttpClient())
                 {
+                    var result = client.GetStringAsync(_settings.BaseUrl + currPage.GetLink).Result;
                     if (currPage.Type.ToLower() == "single")
                     {
-                        var result = client.GetStringAsync(_settings.BaseUrl + currPage.GetLink).Result;
                         var fields = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(result);
-                        List<KeyValuePair<string, dynamic>> tempList = new List<KeyValuePair<string, dynamic>>();
+                        Dictionary<string, dynamic> tempList = new Dictionary<string, dynamic>();
                         foreach (string fieldName in fields.Keys)
                         {
                             var fieldVal = fields[fieldName];
                             if (fieldVal.GetType().ToString() == "Newtonsoft.Json.Linq.JArray")
                             {
-                                var fieldValString = fieldVal.ToString();
-                                fieldVal = JsonConvert.DeserializeObject<string[]>(fieldValString);
+                                fieldVal = JsonConvert.DeserializeObject<string[]>(fieldVal.ToString());
                             }
-                            tempList.Add(new KeyValuePair<string, dynamic>(fieldName, fieldVal));
+                            tempList.Add(fieldName, fieldVal);
                         }
                         currPage.Fields.Add(tempList);
+                        //ListedContents(currPage.Fields.First(), tab);
                     }
-                    else if (currPage.Type.ToLower() == "array")
+                    else if (currPage.Type.ToLower() == "array" || currPage.Type.ToLower() == "listed")
                     {
-
-                    }
-                    else if(currPage.Type.ToLower() == "listed")
-                    {
-
+                        var pageContents = JsonConvert.DeserializeObject<List<Dictionary<string, dynamic>>>(result);
+                        foreach (Dictionary<string, dynamic> content in pageContents)
+                        { 
+                            Dictionary<string, dynamic> tempList = new Dictionary<string, dynamic>();
+                            foreach(string key in content.Keys)
+                            {
+                                var fieldVal = content[key];
+                                if (fieldVal.GetType().ToString() == "Newtonsoft.Json.Linq.JArray")
+                                {
+                                    fieldVal = JsonConvert.DeserializeObject<string[]>(fieldVal.ToString());
+                                }
+                                tempList.Add(key, fieldVal);
+                            }
+                            currPage.Fields.Add(tempList);
+                        }
+                        ListedContents(currPage.Fields, tab);
                     }
                     else
                     {
@@ -87,17 +98,13 @@ namespace WebsiteUpdater
                     }
                 }
             }
-            if(currPage.Type.ToLower() == "single")
-            {
-                ListedContents(currPage.Fields.First(), tab);
-            }
             //tab.Header = _settings.Pages[tabs.SelectedIndex].Name + "Tested";
         }
-        private void ListedContents(List<KeyValuePair<string,dynamic>> contents, TabItem tab)
+        private void ListedContents(List<Dictionary<string,dynamic>> contents, TabItem tab)
         {
-            foreach(KeyValuePair<string, dynamic> item in contents)
-            {
-                tab.Content = tab.Content + "\n" + item.Key;
+            foreach(Dictionary<string, dynamic> contentDictionary in contents)
+            { 
+                tab.Content = tab.Content + "\n";
             }
         }
     }

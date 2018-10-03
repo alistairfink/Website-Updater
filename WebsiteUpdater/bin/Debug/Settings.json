@@ -17,16 +17,16 @@
       "AddLink": "/yolo2"
     },
     {
-      "Type": "Normal",
+      "Type": "ARRAY",
       "Name": "Test1",
       "GetLink": "/GetEducation",
       "EditLink": "/notYOlo",
       "AddLink": "/yolo2"
     },
     {
-      "Type": "List",
+      "Type": "listed",
       "Name": "Test3",
-      "GetLink": "/yolo",
+      "GetLink": "/GetPortfolioList",
       "EditLink": "/notYOlo",
       "AddLink": "/yolo2"
     },
