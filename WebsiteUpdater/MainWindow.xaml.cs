@@ -43,7 +43,14 @@ namespace WebsiteUpdater
                 string newName = "     " + page.Name + "     ";
                 newTab.Header = newName;
                 newTab.Name = page.Name;
-                newTab.Content = "Loading...";
+                Grid newTabContent = new Grid();
+                string loadingText = "Loading...";
+                TextBlock text = new TextBlock
+                {
+                    Text = loadingText
+                };
+                newTabContent.Children.Add(text);
+                newTab.Content = newTabContent;
                 tabs.Items.Add(newTab);
             }
         }
@@ -102,10 +109,39 @@ namespace WebsiteUpdater
         }
         private void ListedContents(List<Dictionary<string,dynamic>> contents, TabItem tab)
         {
-            foreach(Dictionary<string, dynamic> contentDictionary in contents)
-            { 
-                tab.Content = tab.Content + "\n";
+            //TODO: Fix Positioning.
+            Grid grid = new Grid();
+            int column = 1;
+            int row = 1;
+            //grid.Background = new SolidColorBrush(Color.FromRgb(50,50,50));
+            foreach (Dictionary<string, dynamic> contentDictionary in contents)
+            {
+                Button button = new Button();
+                button.Click += new RoutedEventHandler(ContentButtonClick);
+                button.Content = contentDictionary.First(x => x.Key != "_id").Value;
+                button.Width = 200;
+                button.Height = 20;
+                button.Tag = contentDictionary.First(x => x.Key == "_id").Value;
+                //button.CommandParameter = "test1";
+                //tab.Content.Children.Add(button);
+                Grid.SetColumn(button, column);
+                Grid.SetRow(button, row);
+                grid.Children.Add(button);
+                column++;
+                if(column >= 5)
+                {
+                    row++;
+                    column = 1;
+                }
             }
+            tab.Content = grid;
+        }
+        private void ContentButtonClick(object sender, EventArgs e)
+        {
+        }
+        private void test(string test)
+        {
+            (tabs.SelectedItem as TabItem).Header = test;
         }
     }
 }

@@ -13,9 +13,12 @@ C:\Users\Alistair Fink\Desktop\Source\WebsiteUpdater\WebsiteUpdater\obj\Debug\We
 C:\Users\Alistair Fink\Desktop\Source\WebsiteUpdater\WebsiteUpdater\obj\Debug\WebsiteUpdater.csproj.CoreCompileInputs.cache
 C:\Users\Alistair Fink\Desktop\Source\WebsiteUpdater\WebsiteUpdater\obj\Debug\WebsiteUpdater.exe
 C:\Users\Alistair Fink\Desktop\Source\WebsiteUpdater\WebsiteUpdater\obj\Debug\WebsiteUpdater.pdb
+C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\bin\Debug\Settings.json
 C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\bin\Debug\WebsiteUpdater.exe.config
 C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\bin\Debug\WebsiteUpdater.exe
 C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\bin\Debug\WebsiteUpdater.pdb
+C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\obj\Debug\WebsiteUpdater.csprojAssemblyReference.cache
 C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\obj\Debug\MainWindow.g.cs
 C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\obj\Debug\App.g.cs
@@ -26,9 +29,6 @@ C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\obj\Debug\W
 C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\obj\Debug\WebsiteUpdater.Properties.Resources.resources
 C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\obj\Debug\WebsiteUpdater.csproj.GenerateResource.cache
 C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\obj\Debug\WebsiteUpdater.csproj.CoreCompileInputs.cache
+C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\obj\Debug\WebsiteUpdater.csproj.CopyComplete
 C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\obj\Debug\WebsiteUpdater.exe
 C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\obj\Debug\WebsiteUpdater.pdb
-C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\obj\Debug\WebsiteUpdater.csproj.CopyComplete
-C:\Users\Alistair Fink\Desktop\Source\Website Updater\WebsiteUpdater\bin\Debug\Settings.json
