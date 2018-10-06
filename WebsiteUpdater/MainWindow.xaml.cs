@@ -4,17 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WebsiteUpdater
 {
@@ -109,35 +100,42 @@ namespace WebsiteUpdater
         }
         private void ListedContents(List<Dictionary<string,dynamic>> contents, TabItem tab)
         {
-            //TODO: Fix Positioning.
-            Grid grid = new Grid();
-            int column = 1;
-            int row = 1;
-            //grid.Background = new SolidColorBrush(Color.FromRgb(50,50,50));
+            /*Layout:
+              <ScrollViewer => scroll>
+                <TextBlock => text>
+                <Button>
+                <Button>
+                <Button>
+                etc...
+              </ScrollViewer>
+             */
+            ScrollViewer scroll = new ScrollViewer();
+            StackPanel stack = new StackPanel();
+            ItemsControl itemsControl = new ItemsControl();
+            List<Button> buttonList = new List<Button>();
+            TextBlock text = new TextBlock
+            {
+                Text = "Test"
+            };
+            stack.Children.Add(text);
             foreach (Dictionary<string, dynamic> contentDictionary in contents)
             {
                 Button button = new Button();
                 button.Click += new RoutedEventHandler(ContentButtonClick);
+                button.Margin = new Thickness(50,20,50,0);
                 button.Content = contentDictionary.First(x => x.Key != "_id").Value;
-                button.Width = 200;
-                button.Height = 20;
                 button.Tag = contentDictionary.First(x => x.Key == "_id").Value;
-                //button.CommandParameter = "test1";
-                //tab.Content.Children.Add(button);
-                Grid.SetColumn(button, column);
-                Grid.SetRow(button, row);
-                grid.Children.Add(button);
-                column++;
-                if(column >= 5)
-                {
-                    row++;
-                    column = 1;
-                }
+                buttonList.Add(button);
             }
-            tab.Content = grid;
+            itemsControl.ItemsSource = buttonList;
+            stack.Children.Add(itemsControl);
+            scroll.Content = stack;
+            tab.Content = scroll;
         }
         private void ContentButtonClick(object sender, EventArgs e)
         {
+            var t = sender as Button;
+            var y = t.Tag;
         }
         private void test(string test)
         {
