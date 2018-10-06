@@ -88,7 +88,7 @@ namespace WebsiteUpdater
                             }
                             currPage.Fields.Add(tempList);
                         }
-                        ListedContents(currPage.Fields, tab);
+                        ListedContents(currPage.Fields, tab, currPage.Name);
                     }
                     else
                     {
@@ -98,7 +98,7 @@ namespace WebsiteUpdater
             }
             //tab.Header = _settings.Pages[tabs.SelectedIndex].Name + "Tested";
         }
-        private void ListedContents(List<Dictionary<string,dynamic>> contents, TabItem tab)
+        private void ListedContents(List<Dictionary<string,dynamic>> contents, TabItem tab, string name)
         {
             /*Layout:
               <ScrollViewer => scroll>
@@ -113,11 +113,16 @@ namespace WebsiteUpdater
             StackPanel stack = new StackPanel();
             ItemsControl itemsControl = new ItemsControl();
             List<Button> buttonList = new List<Button>();
-            TextBlock text = new TextBlock
+            TextBlock header = new TextBlock
             {
-                Text = "Test"
+                Height = 30,
+                Text = name
             };
-            stack.Children.Add(text);
+            TextBlock footer = new TextBlock
+            {
+                Height = 50
+            };
+            stack.Children.Add(header);
             foreach (Dictionary<string, dynamic> contentDictionary in contents)
             {
                 Button button = new Button();
@@ -129,17 +134,28 @@ namespace WebsiteUpdater
             }
             itemsControl.ItemsSource = buttonList;
             stack.Children.Add(itemsControl);
+            stack.Children.Add(footer);
             scroll.Content = stack;
             tab.Content = scroll;
         }
         private void ContentButtonClick(object sender, EventArgs e)
         {
-            var t = sender as Button;
-            var y = t.Tag;
+            string id = (sender as Button).Tag.ToString();
+            Page currPage = _settings.Pages[tabs.SelectedIndex];
+            List<Dictionary<string, dynamic>> contents = currPage.Fields;
+            var fields = contents.Find(x => x["_id"] == id);
+            if(currPage.Type.ToLower() == "listed")
+            {
+                using (HttpClient client = new HttpClient())
+                {
+
+                }
+            }
+            else
+            {
+
+            }
         }
-        private void test(string test)
-        {
-            (tabs.SelectedItem as TabItem).Header = test;
-        }
+
     }
 }

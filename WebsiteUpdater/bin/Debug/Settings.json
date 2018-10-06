@@ -4,45 +4,31 @@
   "Pages": [
     {
       "Type": "Single",
-      "Name": "Test1",
+      "Name": "About",
       "GetLink": "/GetAbout",
-      "EditLink": "/notYOlo",
-      "AddLink": "/yolo2"
+      "EditLink": "/EditAbout"
     },
     {
-      "Type": "Single",
-      "Name": "Test1",
-      "GetLink": "/GetAbout",
-      "EditLink": "/notYOlo",
-      "AddLink": "/yolo2"
-    },
-    {
-      "Type": "ARRAY",
-      "Name": "Test1",
-      "GetLink": "/GetEducation",
-      "EditLink": "/notYOlo",
-      "AddLink": "/yolo2"
-    },
-    {
-      "Type": "listed",
-      "Name": "Test3",
+      "Type": "Listed",
+      "Name": "Portfolio",
       "GetLink": "/GetPortfolioList",
-      "EditLink": "/notYOlo",
-      "AddLink": "/yolo2"
+      "GetListItemLink": "/GetPortfolioItem",
+      "EditLink": "/EditPortfolio",
+      "AddLink": "/AddPortfolio"
     },
     {
-      "Type": "Normal",
-      "Name": "Test4",
-      "GetLink": "/yolo",
-      "EditLink": "/notYOlo",
-      "AddLink": "/yolo2"
+      "Type": "Array",
+      "Name": "Experience",
+      "GetLink": "/GetExperience",
+      "EditLink": "/EditExperience",
+      "AddLink": "/AddExperience"
     },
     {
-      "Type": "Normal",
-      "Name": "Test5",
-      "GetLink": "/yolo",
-      "EditLink": "/notYOlo",
-      "AddLink": "/yolo2"
+      "Type": "Array",
+      "Name": "Education",
+      "GetLink": "/GetEducation",
+      "EditLink": "/EditEducation",
+      "AddLink": "/AddEducation"
     }
   ]
 }
