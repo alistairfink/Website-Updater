@@ -1,11 +1,14 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace WebsiteUpdater
 {
@@ -69,6 +72,7 @@ namespace WebsiteUpdater
                             tempList.Add(fieldName, fieldVal);
                         }
                         currPage.Fields.Add(tempList);
+                        ItemContents(currPage.Fields.First()["_id"],tab, false);
                         //ListedContents(currPage.Fields.First(), tab);
                     }
                     else if (currPage.Type.ToLower() == "array" || currPage.Type.ToLower() == "listed")
@@ -141,10 +145,27 @@ namespace WebsiteUpdater
         private void ContentButtonClick(object sender, EventArgs e)
         {
             string id = (sender as Button).Tag.ToString();
+            TabItem tab = tabs.SelectedItem as TabItem;
+            ItemContents(id, tab, true);
+        }
+        private void ItemContents(string id, TabItem tab, bool backButton)
+        {
             Page currPage = _settings.Pages[tabs.SelectedIndex];
             List<Dictionary<string, dynamic>> contents = currPage.Fields;
             var fields = contents.Find(x => x["_id"] == id);
-            if(currPage.Type.ToLower() == "listed")
+            ScrollViewer scroll = new ScrollViewer();
+            StackPanel stack = new StackPanel();
+            if (backButton)
+            {
+                Button button = new Button
+                {
+                    Margin = new Thickness(50, 20, 50, 0),
+                    Content = "Back"
+                };
+                button.Click += new RoutedEventHandler(BackButton);
+                stack.Children.Add(button);
+            }
+            if (currPage.Type.ToLower() == "listed")
             {
                 using (HttpClient client = new HttpClient())
                 {
@@ -153,9 +174,78 @@ namespace WebsiteUpdater
             }
             else
             {
-
+                foreach (string key in fields.Keys)
+                {
+                    TextBlock title = new TextBlock
+                    {
+                        Text = key
+                    };
+                    TextBox text = new TextBox
+                    {
+                        Tag = key,
+                        AcceptsReturn = true,
+                        Text = fields[key].GetType().IsArray ? String.Join("\n\n", fields[key]) : fields[key]
+                    };
+                    if(fields[key].GetType().IsArray)
+                        text.Tag += ",array";
+                    else
+                        text.Tag += ",notArray";
+                    if (key == "_id")
+                    {
+                        text.IsReadOnly = true;
+                        text.Background = Brushes.LightGray;
+                    }
+                     stack.Children.Add(title);
+                    stack.Children.Add(text);
+                }
+            }
+            Button updateButton = new Button
+            {
+                Content = "Update",
+                Tag = id
+            };
+            updateButton.Click += UpdateButton;
+            stack.Children.Add(updateButton);
+            scroll.Content = stack;
+            tab.Content = scroll;
+        }
+        private void BackButton(object sender, EventArgs e)
+        {
+            Page currPage = _settings.Pages[tabs.SelectedIndex];
+            List<Dictionary<string, dynamic>> contents = currPage.Fields;
+            TabItem tab = tabs.SelectedItem as TabItem;
+            ListedContents(contents, tab, currPage.Name);
+        }
+        private void UpdateButton(object sender, EventArgs e)
+        {
+            //Grabs stuff for setup and setups content string
+            Page currPage = _settings.Pages[tabs.SelectedIndex];
+            StackPanel parent = VisualTreeHelper.GetParent(sender as DependencyObject) as StackPanel;
+            string requestContent = "{";
+            requestContent += "'apiKey':'" + _settings.APIKey + "',";
+            //Loops through and builds json fields
+            foreach (var child in parent.Children)
+            {
+                if (child.GetType().ToString() == "System.Windows.Controls.TextBox")
+                {
+                    var textBoxChild = child as TextBox;
+                    string[] tags = (textBoxChild.Tag as string).Split(',');
+                    string key = tags[0];
+                    //Checks if it's supposed to be array.
+                    string array = tags[1];
+                    string[] value = textBoxChild.Text.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                    //If it is supposed to be an array then it checks the length and sets either an array or empty array.
+                    requestContent += "'" + key + "':" + (array == "notArray" ? "'" + value[0] + "'" : "[" + (value.Length > 0 ? "'" + String.Join("','", value) + "'" : "") + "]") + ",";
+                }
+            }
+            requestContent += "}";
+            //Posts to edit link
+            using (HttpClient client = new HttpClient())
+            {
+                JObject json = JObject.Parse(requestContent);
+                var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                var result = client.PostAsync(_settings.BaseUrl + currPage.EditLink, content).Result;
             }
         }
-
     }
 }
