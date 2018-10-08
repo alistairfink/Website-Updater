@@ -208,7 +208,6 @@ namespace WebsiteUpdater
                         stack.Children.Add(title);
                         stack.Children.Add(text);
                     }
-
                 }
             }
             else
@@ -318,7 +317,46 @@ namespace WebsiteUpdater
             {
                 using (HttpClient client = new HttpClient())
                 {
-
+                    string requestContent = "{'_id':'" + currPage.Fields.First()["_id"] + "'}";
+                    JObject json = JObject.Parse(requestContent);
+                    var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                    var result = client.PostAsync(_settings.BaseUrl + currPage.GetListItemLink, content).Result;
+                    string stringResult = result.Content.ReadAsStringAsync().Result;
+                    var listedFields = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(stringResult);
+                    foreach (string key in listedFields.Keys)
+                    {
+                        if (key != "_id")
+                        {
+                            var fieldVal = listedFields[key];
+                            if (fieldVal.GetType().ToString() == "Newtonsoft.Json.Linq.JArray")
+                            {
+                                fieldVal = JsonConvert.DeserializeObject<string[]>(fieldVal.ToString());
+                            }
+                            TextBlock title = new TextBlock
+                            {
+                                Text = key
+                            };
+                            TextBox text = new TextBox
+                            {
+                                Tag = key,
+                                Text = ""
+                            };
+                            if (fieldVal.GetType().IsArray)
+                            {
+                                text.Tag += ",array";
+                                text.AcceptsReturn = true;
+                            }
+                            else
+                                text.Tag += ",notArray";
+                            if (key == "_id")
+                            {
+                                text.IsReadOnly = true;
+                                text.Background = Brushes.LightGray;
+                            }
+                            stack.Children.Add(title);
+                            stack.Children.Add(text);
+                        }
+                    }
                 }
             }
             else
@@ -376,7 +414,7 @@ namespace WebsiteUpdater
                     string array = tags[1];
                     string[] value = textBoxChild.Text.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
                     //If it is supposed to be an array then it checks the length and sets either an array or empty array.
-                    requestContent += "'" + key + "':" + (array == "notArray" ? "'" + value[0] + "'" : "[" + (value.Length > 0 ? "'" + String.Join("','", value) + "'" : "") + "]") + ",";
+                    requestContent += "'" + key + "':" + (array == "notArray" ? "'" + value[0] + "'" : "[" + (value.Length > 0 ? "\"" + String.Join("\",\"", value) + "\"" : "") + "]") + ",";
                 }
             }
             requestContent += "}";
