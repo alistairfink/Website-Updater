@@ -26,8 +26,10 @@ The last type of page is called "Listed" type pages. These are very similar to t
     <img src="./Images/2.PNG"/>
 </p>
 
-
-
 <p>
     <img src="./Images/3.PNG"/>
-</p>
+</p> Disclamer
+
+### Disclaimer
+
+The settings available in the Settings.json file included in the repo are not real settings. These were merely set up for my testing purposed when developing this application. At this time the API Key and addresses do not lead anywhere.
