@@ -13,8 +13,9 @@ There are three types of pages and these correspond to how my personal website's
 The first type of page are called "Single" type pages and represents pages with only one set of fields. An example of this is my "About Me" page which only includes my name, description, picture, etc. As there can never be another instance an add function is not required. Instead only the update function is required.
 
 <p align="center">
-    <img src="./Images/1.png"/>
+    <img src="./Images/1.PNG"/>
 </p>
+
 
 
 The second type of page is called "Array" and represents pages in which multiple instances of the page content can be created something like my education page or experience page is an example of this. These pages are returned as simple arrays of objects from my back end APIs.
@@ -22,10 +23,11 @@ The second type of page is called "Array" and represents pages in which multiple
 The last type of page is called "Listed" type pages. These are very similar to the "Array" type pages with the simple difference that the initial get call returns a barebones list of the actual contents. Another call is required in order to get the entire object. This pattern is demonstrated in my portfolio page in which initially only the barebones list is required. When a user clicks a portfolio item a separate call is then processed in which the actual item is retrieved.
 
 <p>
-    <img src="./Images/2.png"/>
+    <img src="./Images/2.PNG"/>
 </p>
 
 
+
 <p>
-    <img src="./Images/3.png"/>
+    <img src="./Images/3.PNG"/>
 </p>
