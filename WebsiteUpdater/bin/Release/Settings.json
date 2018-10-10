@@ -1,0 +1,34 @@
+﻿{
+  "BaseUrl": "http://memes.alistairfink.com/websiteTest",
+  "APIKey": "243d25d9-ab9e-47e9-91cc-0cc956df7320",
+  "Pages": [
+    {
+      "Type": "Single",
+      "Name": "About",
+      "GetLink": "/GetAbout",
+      "EditLink": "/EditAbout"
+    },
+    {
+      "Type": "Listed",
+      "Name": "Portfolio",
+      "GetLink": "/GetPortfolioList",
+      "GetListItemLink": "/GetPortfolioItem",
+      "EditLink": "/EditPortfolio",
+      "AddLink": "/AddPortfolio"
+    },
+    {
+      "Type": "Array",
+      "Name": "Experience",
+      "GetLink": "/GetExperience",
+      "EditLink": "/EditExperience",
+      "AddLink": "/AddExperience"
+    },
+    {
+      "Type": "Array",
+      "Name": "Education",
+      "GetLink": "/GetEducation",
+      "EditLink": "/EditEducation",
+      "AddLink": "/AddEducation"
+    }
+  ]
+}
