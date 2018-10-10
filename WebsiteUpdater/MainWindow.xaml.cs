@@ -118,22 +118,25 @@ namespace WebsiteUpdater
             TextBlock header = new TextBlock
             {
                 Height = 30,
-                Text = name
+                Text = name,
+                Style = Resources["Title"] as Style
             };
             TextBlock footer = new TextBlock
             {
                 Height = 50
             };
             stack.Children.Add(header);
-            Button addButton = new Button();
+            Button addButton = new Button()
+            {
+                Content = "Add",
+                Style = Resources["Add"] as Style
+            };
             addButton.Click += AddButton;
-            addButton.Content = "Add";
             stack.Children.Add(addButton);
             foreach (Dictionary<string, dynamic> contentDictionary in contents)
             {
                 Button button = new Button();
                 button.Click += new RoutedEventHandler(ContentButtonClick);
-                button.Margin = new Thickness(50, 20, 50, 0);
                 button.Content = contentDictionary.First(x => x.Key != "_id").Value;
                 button.Tag = contentDictionary.First(x => x.Key == "_id").Value;
                 buttonList.Add(button);
@@ -161,11 +164,21 @@ namespace WebsiteUpdater
             {
                 Button button = new Button
                 {
-                    Margin = new Thickness(50, 20, 50, 0),
-                    Content = "Back"
+                    Content = "Back",
+                    Style = Resources["Back"] as Style
                 };
                 button.Click += new RoutedEventHandler(BackButton);
                 stack.Children.Add(button);
+            }
+            else
+            {
+                TextBlock header = new TextBlock
+                {
+                    Height = 30,
+                    Text = currPage.Name,
+                    Style = Resources["Title"] as Style
+                };
+                stack.Children.Add(header);
             }
             if (currPage.Type.ToLower() == "listed")
             {
@@ -242,7 +255,8 @@ namespace WebsiteUpdater
             Button updateButton = new Button
             {
                 Content = "Update",
-                Tag = id
+                Tag = id,
+                Style = Resources["Update"] as Style
             };
             updateButton.Click += UpdateButton;
             stack.Children.Add(updateButton);
@@ -275,7 +289,7 @@ namespace WebsiteUpdater
                     string array = tags[1];
                     string[] value = textBoxChild.Text.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
                     //If it is supposed to be an array then it checks the length and sets either an array or empty array.
-                    requestContent += "'" + key + "':" + (array == "notArray" ? "'" + value[0] + "'" : "[" + (value.Length > 0 ? "\"" + String.Join("\",\"", value) + "\"" : "") + "]") + ",";
+                    requestContent += "'" + key + "':" + (array == "notArray" ? "\"" + value[0] + "\"" : "[" + (value.Length > 0 ? "\"" + String.Join("\",\"", value) + "\"" : "") + "]") + ",";
                 }
             }
             requestContent += "}";
@@ -308,8 +322,8 @@ namespace WebsiteUpdater
             TabItem tab = tabs.SelectedItem as TabItem;
             Button button = new Button
             {
-                Margin = new Thickness(50, 20, 50, 0),
-                Content = "Back"
+                Content = "Back",
+                Style = Resources["Back"] as Style
             };
             button.Click += new RoutedEventHandler(BackButton);
             stack.Children.Add(button);
@@ -388,7 +402,8 @@ namespace WebsiteUpdater
             }
             Button updateButton = new Button
             {
-                Content = "Add"
+                Content = "Add",
+                Style = Resources["Add"] as Style
             };
             updateButton.Click += SendAddButton;
             stack.Children.Add(updateButton);
