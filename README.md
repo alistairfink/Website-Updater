@@ -28,7 +28,7 @@ The last type of page is called "Listed" type pages. These are very similar to t
 
 <p>
     <img src="./Images/3.PNG"/>
-</p> Disclamer
+</p>
 
 ### Disclaimer
 
