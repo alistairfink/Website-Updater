@@ -1,4 +1,4 @@
-# Back End Website Updater
+# 'BACK END WEBSITE UPDATER' 
 
 This was a small tool created out of my annoyance at having to go through my code and figure out what I was sending my website APIs every time I wanted to update my website. This really made no sense as the whole idea of using node back end APIs was to not have to go through my code every time I needed to update. With this tool I can now do that. While this application is tooled towards my website it is dynamic in the sense that an pages and page types are set within the Settings.json file. This means that anyone who wants to take the [back end for my personal website](https://github.com/alistairfink/Personal-Website-V3) and expand upon can also use this tool as none of my pages are hard coded. 
 
@@ -6,7 +6,7 @@ I created this tool using Microsoft's WPF framework as a method of increasing my
 
 
 
-## Types of Pages
+## TYPES OF PAGES
 
 There are three types of pages and these correspond to how my personal website's back end handles content.
 
@@ -30,6 +30,6 @@ The last type of page is called "Listed" type pages. These are very similar to t
     <img src="./Images/3.PNG"/>
 </p>
 
-### Disclaimer
+### DISCLAIMER
 
 The settings available in the Settings.json file included in the repo are not real settings. These were merely set up for my testing purposed when developing this application. At this time the API Key and addresses do not lead anywhere.
