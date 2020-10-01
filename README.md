@@ -2,7 +2,7 @@
 
 This was a small tool created out of my annoyance at having to go through my code and figure out what I was sending my website APIs every time I wanted to update my website. This really made no sense as the whole idea of using node back end APIs was to not have to go through my code every time I needed to update. With this tool I can now do that. While this application is tooled towards my website it is dynamic in the sense that an pages and page types are set within the Settings.json file. This means that anyone who wants to take the [back end for my personal website](https://github.com/alistairfink/Personal-Website-V3) and expand upon can also use this tool as none of my pages are hard coded. 
 
-I created this tool using Microsoft's WPF framework as a method of increasing my familiarity with C# and .Net as a whole. 
+I created this tool using Microsoft's WPF(Windows Presentation Foundation) framework as a method of increasing my familiarity with C# and .Net as a whole. 
 
 
 
